@@ -3,20 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dawnleaf Lab</title>
-<meta name="description" content="Dawnleaf Lab — building AI-powered digital products that help people live better.">
+<title>Dawnleaf Labs</title>
+<meta name="description" content="Dawnleaf Labs — building AI-powered digital products that help people live better.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,500;9..144,1,400;9..144,1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:      #FBF7EF;      /* 米黄温暖底 · 土色但极轻 */
-    --leaf:    #5B8A3F;      /* 嫩叶绿 · 木 */
-    --leaf-2:  #7BA85D;      /* 淡绿 · 木 */
-    --dawn:    #D65A2C;      /* 晨光朱红 · 丁火 */
-    --dawn-2:  #E88458;      /* 暖橘红 · 丁火余晕 */
-    --ink:     #2C2418;      /* 深墨 · 字体主色 */
-    --ink-sub: #7A6E5C;      /* 灰墨 · 副字色 */
+    --bg:       #FBF6EA;      /* 米黄温暖底 · 晨光感 */
+    --bg-warm:  #F7EFDD;      /* 深一点的暖底 · 用于装饰 */
+    --leaf:     #5B8A3F;      /* 嫩叶绿 · 木 */
+    --leaf-2:   #7BA85D;      /* 淡绿 */
+    --leaf-3:   #A8C48A;      /* 浅淡叶影 · 用于背景装饰 */
+    --dawn:     #D65A2C;      /* 晨光朱红 · 丁火 */
+    --dawn-2:   #E88458;      /* 暖橘红 */
+    --dawn-3:   #F4B893;      /* 浅晨光 · 用于点缀 */
+    --ink:      #2C2418;      /* 深墨 */
+    --ink-sub:  #7A6E5C;      /* 灰墨 */
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body {
@@ -27,51 +30,61 @@
     line-height: 1.6;
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
   body {
-    display: flex;
-    flex-direction: column;
-    padding: 3.5rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 5rem;
-  }
-  .mark {
-    width: 22px;
-    height: 22px;
-    display: inline-block;
     position: relative;
   }
-  .mark::before {
-    content: '';
+  /* 背景装饰叶子 */
+  .bg-leaves {
     position: absolute;
-    top: 3px; left: 0;
-    width: 22px; height: 14px;
-    background: var(--leaf);
-    border-radius: 100% 0 100% 0;
-    transform: rotate(-15deg);
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
   }
-  .mark::after {
-    content: '';
+  .bg-leaves svg {
     position: absolute;
-    top: -2px; right: -3px;
-    width: 8px; height: 8px;
-    background: var(--dawn);
-    border-radius: 50%;
-    box-shadow: 0 0 12px var(--dawn-2);
+  }
+  .leaf-tl { top: -60px; left: -80px; transform: rotate(-25deg); opacity: 0.35; }
+  .leaf-tr { top: 40px; right: -100px; transform: rotate(140deg); opacity: 0.3; }
+  .leaf-br { bottom: -80px; right: -60px; transform: rotate(200deg); opacity: 0.35; }
+  .leaf-bl { bottom: 80px; left: -100px; transform: rotate(60deg); opacity: 0.28; }
+  .leaf-mid { top: 45%; right: 8%; transform: rotate(35deg); opacity: 0.18; }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3.5rem 2rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 5rem;
+  }
+  /* Logo mark: 叶子 + 晨光 */
+  .logo-mark {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
   .brand {
     font-family: 'Fraunces', serif;
     font-weight: 500;
-    font-size: 1.15rem;
-    letter-spacing: 0.02em;
+    font-size: 1.2rem;
+    letter-spacing: 0.015em;
     color: var(--ink);
   }
+
   main {
     flex: 1;
     display: flex;
@@ -93,29 +106,46 @@
     color: var(--dawn);
     font-style: italic;
     font-weight: 500;
+    position: relative;
+  }
+  /* 在 accent 底下画一根手绘叶脉曲线 */
+  h1 .accent::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -8px;
+    height: 6px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 6'><path d='M2,4 Q50,1 100,4 T198,4' stroke='%23D65A2C' stroke-width='1.5' fill='none' stroke-linecap='round' opacity='0.5'/></svg>");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   }
   .lede {
     font-size: 1.15rem;
-    line-height: 1.7;
+    line-height: 1.75;
     color: var(--ink);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.6rem;
     max-width: 560px;
   }
   .sub {
     font-size: 0.98rem;
     color: var(--ink-sub);
-    line-height: 1.7;
+    line-height: 1.75;
     max-width: 560px;
   }
+
   .tags {
     display: flex;
     gap: 0.6rem;
     margin-top: 3.5rem;
     flex-wrap: wrap;
+    align-items: center;
   }
   .tag {
-    display: inline-block;
-    padding: 0.35rem 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.42rem 0.95rem;
     font-size: 0.82rem;
     letter-spacing: 0.05em;
     border-radius: 999px;
@@ -129,6 +159,10 @@
     background: rgba(214, 90, 44, 0.10);
     color: var(--dawn);
   }
+  .tag svg {
+    display: block;
+  }
+
   footer {
     margin-top: 6rem;
     padding-top: 2rem;
@@ -136,40 +170,122 @@
     font-size: 0.82rem;
     color: var(--ink-sub);
     letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
+
   @media (max-width: 640px) {
-    body { padding: 2rem 1.5rem; }
+    .container { padding: 2rem 1.5rem; }
     header { margin-bottom: 3rem; }
     h1 { margin-bottom: 1.8rem; }
+    .leaf-tl { top: -30px; left: -60px; }
+    .leaf-tr { display: none; }
+    .leaf-mid { display: none; }
   }
 </style>
 </head>
 <body>
+
+<!-- 背景手绘叶子装饰 -->
+<div class="bg-leaves" aria-hidden="true">
+  <svg class="leaf-tl" width="260" height="260" viewBox="0 0 260 260" fill="none">
+    <path d="M40,220 Q60,120 130,60 Q200,10 240,20 Q230,110 160,180 Q90,240 40,220 Z"
+          fill="#7BA85D" opacity="0.85"/>
+    <path d="M40,220 Q90,150 240,20" stroke="#5B8A3F" stroke-width="2" fill="none" opacity="0.6"/>
+    <path d="M80,180 Q100,150 120,140" stroke="#5B8A3F" stroke-width="1.2" fill="none" opacity="0.5"/>
+    <path d="M110,150 Q135,120 160,110" stroke="#5B8A3F" stroke-width="1.2" fill="none" opacity="0.5"/>
+    <path d="M140,120 Q170,95 195,80" stroke="#5B8A3F" stroke-width="1.2" fill="none" opacity="0.5"/>
+  </svg>
+
+  <svg class="leaf-tr" width="200" height="200" viewBox="0 0 200 200" fill="none">
+    <path d="M30,170 Q45,90 100,45 Q155,15 185,25 Q175,95 120,140 Q65,180 30,170 Z"
+          fill="#A8C48A" opacity="0.9"/>
+    <path d="M30,170 Q75,110 185,25" stroke="#5B8A3F" stroke-width="1.5" fill="none" opacity="0.55"/>
+  </svg>
+
+  <svg class="leaf-br" width="300" height="300" viewBox="0 0 300 300" fill="none">
+    <path d="M45,250 Q70,140 145,75 Q225,25 275,35 Q265,140 190,215 Q100,285 45,250 Z"
+          fill="#7BA85D" opacity="0.7"/>
+    <path d="M45,250 Q100,180 275,35" stroke="#5B8A3F" stroke-width="2" fill="none" opacity="0.55"/>
+  </svg>
+
+  <svg class="leaf-bl" width="180" height="180" viewBox="0 0 180 180" fill="none">
+    <path d="M25,150 Q40,80 90,40 Q140,15 170,25 Q160,85 115,125 Q60,160 25,150 Z"
+          fill="#A8C48A" opacity="0.85"/>
+    <path d="M25,150 Q65,95 170,25" stroke="#5B8A3F" stroke-width="1.5" fill="none" opacity="0.5"/>
+  </svg>
+
+  <svg class="leaf-mid" width="140" height="140" viewBox="0 0 140 140" fill="none">
+    <path d="M20,120 Q30,60 70,30 Q110,10 130,20 Q120,65 85,100 Q50,130 20,120 Z"
+          fill="#D65A2C" opacity="0.55"/>
+    <path d="M20,120 Q55,75 130,20" stroke="#B84422" stroke-width="1.2" fill="none" opacity="0.6"/>
+  </svg>
+</div>
+
+<div class="container">
   <header>
-    <span class="mark" aria-hidden="true"></span>
-    <span class="brand">Dawnleaf Lab</span>
+    <span class="logo-mark" aria-hidden="true">
+      <!-- 小 logo：一片精致的叶子 + 晨光点 -->
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+        <!-- 叶子主体 -->
+        <path d="M5,26 Q8,12 18,6 Q28,2 31,4 Q29,15 20,23 Q10,29 5,26 Z"
+              fill="#5B8A3F"/>
+        <!-- 叶脉 -->
+        <path d="M5,26 Q13,17 31,4" stroke="#3D6329" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+        <path d="M10,22 Q14,18 18,15" stroke="#3D6329" stroke-width="0.9" fill="none" stroke-linecap="round"/>
+        <path d="M14,17 Q20,13 24,10" stroke="#3D6329" stroke-width="0.9" fill="none" stroke-linecap="round"/>
+        <!-- 晨光点 · 朱红 -->
+        <circle cx="28" cy="8" r="3.2" fill="#D65A2C"/>
+        <circle cx="28" cy="8" r="5.5" fill="#D65A2C" opacity="0.28"/>
+        <circle cx="28" cy="8" r="8" fill="#D65A2C" opacity="0.10"/>
+      </svg>
+    </span>
+    <span class="brand">Dawnleaf Labs</span>
   </header>
 
   <main>
     <h1>Software that helps people <span class="accent">live better</span>.</h1>
 
     <p class="lede">
-      Dawnleaf Lab builds AI-powered digital products for everyday people around the world &mdash; small, thoughtful things that give you back time, ease, and a bit of joy.
+      Dawnleaf Labs builds AI-powered digital products for everyday people around the world &mdash; small, thoughtful things that give you back time, ease, and a little joy.
     </p>
 
     <p class="sub">
-      We work with the best talent, ideas, and technology from every corner of the world. Our belief is simple: technology should serve life, not the other way around.
+      We bring together the best talent, ideas, and technology from every corner of the world. Our belief is simple: technology should serve life, not the other way around.
     </p>
 
     <div class="tags">
-      <span class="tag tag-leaf">Global</span>
-      <span class="tag tag-dawn">Human-first</span>
-      <span class="tag tag-leaf">Made with care</span>
+      <span class="tag tag-leaf">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+          <circle cx="5" cy="5" r="4" stroke="#5B8A3F" stroke-width="1.2" fill="none"/>
+          <path d="M2,5 L8,5 M5,2 L5,8" stroke="#5B8A3F" stroke-width="0.9"/>
+        </svg>
+        Global
+      </span>
+      <span class="tag tag-dawn">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+          <circle cx="5" cy="5" r="2.5" fill="#D65A2C"/>
+          <circle cx="5" cy="5" r="4" stroke="#D65A2C" stroke-width="0.8" fill="none" opacity="0.6"/>
+        </svg>
+        Human-first
+      </span>
+      <span class="tag tag-leaf">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+          <path d="M1,8 Q2,4 5,2 Q8,1 9,2 Q8,5 5,7 Q2,9 1,8 Z" fill="#5B8A3F"/>
+        </svg>
+        Made with care
+      </span>
     </div>
   </main>
 
   <footer>
-    &copy; 2026 Dawnleaf Lab
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+      <path d="M2,10 Q3,5 6,2 Q10,0 11,1 Q10,5 6,8 Q3,11 2,10 Z" fill="#7A6E5C" opacity="0.6"/>
+    </svg>
+    &copy; 2026 Dawnleaf Labs
   </footer>
+</div>
+
 </body>
 </html>
