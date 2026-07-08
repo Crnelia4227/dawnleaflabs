@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dawnleaf Lab</title>
+<meta name="description" content="Dawnleaf Lab — building AI-powered digital products that help people live better.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #FBF7EF;      /* 米黄温暖底 · 土色但极轻 */
+    --leaf:    #5B8A3F;      /* 嫩叶绿 · 木 */
+    --leaf-2:  #7BA85D;      /* 淡绿 · 木 */
+    --dawn:    #D65A2C;      /* 晨光朱红 · 丁火 */
+    --dawn-2:  #E88458;      /* 暖橘红 · 丁火余晕 */
+    --ink:     #2C2418;      /* 深墨 · 字体主色 */
+    --ink-sub: #7A6E5C;      /* 灰墨 · 副字色 */
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    padding: 3.5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 5rem;
+  }
+  .mark {
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    position: relative;
+  }
+  .mark::before {
+    content: '';
+    position: absolute;
+    top: 3px; left: 0;
+    width: 22px; height: 14px;
+    background: var(--leaf);
+    border-radius: 100% 0 100% 0;
+    transform: rotate(-15deg);
+  }
+  .mark::after {
+    content: '';
+    position: absolute;
+    top: -2px; right: -3px;
+    width: 8px; height: 8px;
+    background: var(--dawn);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--dawn-2);
+  }
+  .brand {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 640px;
+    margin-top: 2rem;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    margin-bottom: 2.2rem;
+    color: var(--ink);
+  }
+  h1 .accent {
+    color: var(--dawn);
+    font-style: italic;
+    font-weight: 500;
+  }
+  .lede {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    max-width: 560px;
+  }
+  .sub {
+    font-size: 0.98rem;
+    color: var(--ink-sub);
+    line-height: 1.7;
+    max-width: 560px;
+  }
+  .tags {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 3.5rem;
+    flex-wrap: wrap;
+  }
+  .tag {
+    display: inline-block;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+    border-radius: 999px;
+    font-weight: 400;
+  }
+  .tag-leaf {
+    background: rgba(91, 138, 63, 0.12);
+    color: var(--leaf);
+  }
+  .tag-dawn {
+    background: rgba(214, 90, 44, 0.10);
+    color: var(--dawn);
+  }
+  footer {
+    margin-top: 6rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(122, 110, 92, 0.15);
+    font-size: 0.82rem;
+    color: var(--ink-sub);
+    letter-spacing: 0.02em;
+  }
+  @media (max-width: 640px) {
+    body { padding: 2rem 1.5rem; }
+    header { margin-bottom: 3rem; }
+    h1 { margin-bottom: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <span class="mark" aria-hidden="true"></span>
+    <span class="brand">Dawnleaf Lab</span>
+  </header>
+
+  <main>
+    <h1>Software that helps people <span class="accent">live better</span>.</h1>
+
+    <p class="lede">
+      Dawnleaf Lab builds AI-powered digital products for everyday people around the world &mdash; small, thoughtful things that give you back time, ease, and a bit of joy.
+    </p>
+
+    <p class="sub">
+      We work with the best talent, ideas, and technology from every corner of the world. Our belief is simple: technology should serve life, not the other way around.
+    </p>
+
+    <div class="tags">
+      <span class="tag tag-leaf">Global</span>
+      <span class="tag tag-dawn">Human-first</span>
+      <span class="tag tag-leaf">Made with care</span>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2026 Dawnleaf Lab
+  </footer>
+</body>
+</html>
